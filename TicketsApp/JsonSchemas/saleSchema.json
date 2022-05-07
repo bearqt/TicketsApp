@@ -1,0 +1,87 @@
+﻿{
+  "$schema": "saleSchema.json",
+  "title": "Sale",
+  "description": "Ticket with segments",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "operation_type": {
+      "type": "string"
+    },
+    "operation_time": {
+      "type": "string"
+    },
+    "operation_place": {
+      "type": "string"
+    },
+    "passenger": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "surname": {
+          "type": "string"
+        },
+        "patronymic": {
+          "type": "string"
+        },
+        "doc_type": {
+          "type": "string"
+        },
+        "doc_number": {
+          "type": "string"
+        },
+        "birthdate": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "passenger_type": {
+          "type": "string"
+        },
+        "ticket_number": {
+          "type": "string"
+        },
+        "ticket_type": {
+          "type": "integer"
+        }
+      },
+      "minProperties": 10
+    },
+    "routes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "airline_code": {
+            "type": "string"
+          },
+          "flight_num": {
+            "type": 1701
+          },
+          "depart_place": {
+            "type": "string"
+          },
+          "depart_datetime": {
+            "type": "string"
+          },
+          "arrive_place": {
+            "type": "string"
+          },
+          "arrive_datetime": {
+            "type": "string"
+          },
+          "pnr_id": {
+            "type": "string"
+          }
+        },
+        "minProperties": 7
+      }
+    }
+  },
+  "required": ["operation_type", "operation_time", "operation_place", "passenger", "routes"]
+}
