@@ -61,7 +61,7 @@
             "type": "string"
           },
           "flight_num": {
-            "type": 1701
+            "type": "integer"
           },
           "depart_place": {
             "type": "string"
