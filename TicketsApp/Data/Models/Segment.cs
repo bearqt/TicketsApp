@@ -10,15 +10,14 @@ namespace TicketsApp.Data.Models
         [Key]
         public int SegmentId { get; set; }
         
+        public int SerialNumber { get; set; }
         public string OperationType { get; set; }
-        // Correct display format
         public DateTimeOffset OperationTime { get; set; }
         public string OperationPlace { get; set; }
         
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Patronymic { get; set; }
-        // 00 format
         public int DocType { get; set; }
         public long DocNumber { get; set; }
         public DateTime Birthdate { get; set; }

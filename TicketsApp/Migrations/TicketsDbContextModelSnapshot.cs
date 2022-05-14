@@ -77,6 +77,9 @@ namespace TicketsApp.Migrations
                     b.Property<string>("PnrId")
                         .HasColumnType("text");
 
+                    b.Property<int>("SerialNumber")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Surname")
                         .HasColumnType("text");
 
@@ -87,6 +90,9 @@ namespace TicketsApp.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("SegmentId");
+
+                    b.HasIndex("TicketNumber", "SerialNumber")
+                        .IsUnique();
 
                     b.ToTable("Segments");
                 });

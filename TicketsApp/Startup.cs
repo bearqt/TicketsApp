@@ -1,31 +1,40 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json;
-using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TicketsApp.Data;
+using TicketsApp.Data.Services;
 using TicketsApp.JsonExtensions;
 using TicketsApp.Middlewares;
+using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
+
 
 namespace TicketsApp
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        private readonly IConfiguration Configuration;
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers().AddJsonOptions(options =>
                 options.JsonSerializerOptions.PropertyNamingPolicy = SnakeCaseNamingPolicy.Instance);
 
             services.AddAutoMapper(typeof(Startup));
-            services.AddDbContext<TicketsDbContext>();
+            services.AddDbContext<TicketsDbContext>(options =>
+            {
+                options.UseNpgsql(Configuration.GetConnectionString("TicketsDatabase"));
+            });
+
+            services.AddScoped<ITicketsService, TicketsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,11 +44,9 @@ namespace TicketsApp
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseValidateJsonSizeMiddleware();
-
+            
             app.UseRouting();
-
+            app.UseValidateJsonSizeMiddleware();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
