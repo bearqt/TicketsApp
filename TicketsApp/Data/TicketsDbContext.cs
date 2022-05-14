@@ -10,13 +10,22 @@ namespace TicketsApp.Data
 
         public TicketsDbContext() : base()
         {
+        }
+
+        public TicketsDbContext(DbContextOptions<TicketsDbContext> options) : base(options)
+        {
             
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Segment>()
+                .HasIndex(s => new {s.TicketNumber, s.SerialNumber})
+                .IsUnique();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql(
-                "Host=localhost;Port=5433;Database=TicketsDb;Username=postgres;Password=sas949596");
         }
     }
 }

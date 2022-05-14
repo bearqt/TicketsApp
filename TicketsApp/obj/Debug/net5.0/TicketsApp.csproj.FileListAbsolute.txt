@@ -35,3 +35,5 @@ C:\Users\feikf\RiderProjects\TicketsApp\TicketsApp\bin\Debug\net5.0\JsonSchemas\
 C:\Users\feikf\RiderProjects\TicketsApp\TicketsApp\bin\Debug\net5.0\Namotion.Reflection.dll
 C:\Users\feikf\RiderProjects\TicketsApp\TicketsApp\bin\Debug\net5.0\NJsonSchema.dll
 C:\Users\feikf\RiderProjects\TicketsApp\TicketsApp\bin\Debug\net5.0\JsonSchemas\refundSchema.json
+C:\Users\feikf\RiderProjects\TicketsApp\TicketsApp\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\feikf\RiderProjects\TicketsApp\TicketsApp\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
