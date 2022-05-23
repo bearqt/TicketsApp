@@ -45,6 +45,7 @@ namespace TicketsApp
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseErrorHandler();
             }
             
             app.UseRouting();
