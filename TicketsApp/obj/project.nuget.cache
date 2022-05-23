@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "BUwW+LU3S6t2f6mmRH7mOryXdD8anPsUR5YOfCuUpOKlMRTWMFKlu7QNi+e54/Iw1AvhYnTiM6/V/vvaF2S52A==",
+  "dgSpecHash": "9jAwyf9XQTMpYH7teRhV1T/cfvpdLOtNUzd74srvYAoz3gai7Ty/+sCTVlVVqInTUuEgvH7ZbJsi+P5CLHPi5Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\feikf\\RiderProjects\\TicketsApp\\TicketsApp\\TicketsApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\feikf\\.nuget\\packages\\automapper\\10.1.0\\automapper.10.1.0.nupkg.sha512",
     "C:\\Users\\feikf\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.0\\automapper.extensions.microsoft.dependencyinjection.8.1.0.nupkg.sha512",
     "C:\\Users\\feikf\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\feikf\\.nuget\\packages\\microsoft.aspnetcore.mvc.versioning\\5.0.0\\microsoft.aspnetcore.mvc.versioning.5.0.0.nupkg.sha512",
     "C:\\Users\\feikf\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\feikf\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.0\\microsoft.entityframeworkcore.5.0.0.nupkg.sha512",
     "C:\\Users\\feikf\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.0\\microsoft.entityframeworkcore.abstractions.5.0.0.nupkg.sha512",

@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,7 +28,8 @@ namespace TicketsApp
         {
             services.AddControllers().AddJsonOptions(options =>
                 options.JsonSerializerOptions.PropertyNamingPolicy = SnakeCaseNamingPolicy.Instance);
-
+            services.AddApiVersioning();
+            services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
             services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<TicketsDbContext>(options =>
             {

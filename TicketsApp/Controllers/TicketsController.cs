@@ -13,7 +13,8 @@ using TicketsApp.InputModels;
 namespace TicketsApp.Controllers
 {
     [ApiController]
-    [Route("/v1")]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiVersion("1.0")]
     public class TicketsController : ControllerBase
     {
         private readonly ITicketsService _service;
@@ -36,7 +37,7 @@ namespace TicketsApp.Controllers
             {
                  await _service.AddTicket(inputModel);
             }
-            catch (Exception ex) // NOT UNIQUE SerialNumber and TicketNumber
+            catch (DbUpdateException ex) // NOT UNIQUE SerialNumber and TicketNumber
             {
                 return Conflict();
             }
