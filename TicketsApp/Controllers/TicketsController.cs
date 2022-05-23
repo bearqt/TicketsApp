@@ -13,7 +13,8 @@ using TicketsApp.InputModels;
 namespace TicketsApp.Controllers
 {
     [ApiController]
-    [Route("/v1")]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiVersion("1.0")]
     public class TicketsController : ControllerBase
     {
         private readonly ITicketsService _service;
@@ -31,15 +32,7 @@ namespace TicketsApp.Controllers
             {
                 return StatusCode(413);
             }
-            
-            try
-            {
-                 await _service.AddTicket(inputModel);
-            }
-            catch (Exception ex) // NOT UNIQUE SerialNumber and TicketNumber
-            {
-                return Conflict();
-            }
+            await _service.AddTicket(inputModel);
             return Ok();
         }
 
@@ -47,14 +40,7 @@ namespace TicketsApp.Controllers
         [ValidateJson("refund")]
         public async Task<ActionResult> Refund(RefundInputModel inputModel)
         {
-            try
-            {
-                await _service.RefundTicket(inputModel);
-            }
-            catch (DbUpdateException ex) // No such segments to refund
-            {
-                return Conflict();
-            }
+            await _service.RefundTicket(inputModel);
             return Ok();
         }
     }
