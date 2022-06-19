@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using TicketsApp.Data.Models;
 using TicketsApp.InputModels;
@@ -13,15 +15,23 @@ namespace TicketsApp.Data.Services
     {
         private readonly TicketsDbContext _context;
         private readonly IMapper _mapper;
+        private readonly ITicketValidator _validator;
 
-        public TicketsService(TicketsDbContext context, IMapper mapper)
+        public TicketsService(TicketsDbContext context, IMapper mapper, ITicketValidator validator)
         {
             _context = context;
             _mapper = mapper;
+            _validator = validator;
         }
         
         public async Task AddTicket(SegmentInputModel inputModel)
         {
+            const int maxTimeout = 12_000; // ms
+            
+            if (!_validator.Validate(inputModel))
+            {
+                throw new BadHttpRequestException("Invalid input value(s)");
+            }
             int count = 0;
             foreach (var route in inputModel.Routes)
             {
@@ -30,7 +40,10 @@ namespace TicketsApp.Data.Services
                 newSegment.SerialNumber = ++count;
                 await _context.Segments.AddAsync(newSegment);
             }
-            await _context.SaveChangesAsync();
+            
+            var source = new CancellationTokenSource();
+            source.CancelAfter(maxTimeout);
+            await _context.SaveChangesAsync(source.Token);
         }
 
         public async Task RefundTicket(RefundInputModel inputModel)

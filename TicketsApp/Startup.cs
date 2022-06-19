@@ -31,6 +31,7 @@ namespace TicketsApp
             services.AddApiVersioning();
             services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
             services.AddAutoMapper(typeof(Startup));
+            services.AddSingleton<ITicketValidator, TicketValidator>();
             services.AddDbContext<TicketsDbContext>(options =>
             {
                 options.UseNpgsql(Configuration.GetConnectionString("TicketsDatabase"));

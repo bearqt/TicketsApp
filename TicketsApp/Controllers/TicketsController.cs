@@ -26,18 +26,16 @@ namespace TicketsApp.Controllers
 
         [HttpPost("sale")]
         [ValidateJson("sale")]
+        [RequestSizeLimit(2024)]
         public async Task<ActionResult> Sale(SegmentInputModel inputModel)
         {
-            if (HttpContext.Response.StatusCode == 413) // JSON size is > than 2 Kb
-            {
-                return StatusCode(413);
-            }
             await _service.AddTicket(inputModel);
             return Ok();
         }
 
         [HttpPost("refund")]
         [ValidateJson("refund")]
+        [RequestSizeLimit(2024)]
         public async Task<ActionResult> Refund(RefundInputModel inputModel)
         {
             await _service.RefundTicket(inputModel);

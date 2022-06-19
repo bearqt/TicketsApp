@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\feikf\\RiderProjects\\TicketsApp\\TicketsApp\\TicketsApp.csproj": {}
+    "C:\\Users\\Dok\\RiderProjects\\TicketsApp\\TicketsApp\\TicketsApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\feikf\\RiderProjects\\TicketsApp\\TicketsApp\\TicketsApp.csproj": {
+    "C:\\Users\\Dok\\RiderProjects\\TicketsApp\\TicketsApp\\TicketsApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\feikf\\RiderProjects\\TicketsApp\\TicketsApp\\TicketsApp.csproj",
+        "projectUniqueName": "C:\\Users\\Dok\\RiderProjects\\TicketsApp\\TicketsApp\\TicketsApp.csproj",
         "projectName": "TicketsApp",
-        "projectPath": "C:\\Users\\feikf\\RiderProjects\\TicketsApp\\TicketsApp\\TicketsApp.csproj",
-        "packagesPath": "C:\\Users\\feikf\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\feikf\\RiderProjects\\TicketsApp\\TicketsApp\\obj\\",
+        "projectPath": "C:\\Users\\Dok\\RiderProjects\\TicketsApp\\TicketsApp\\TicketsApp.csproj",
+        "packagesPath": "C:\\Users\\Dok\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Dok\\RiderProjects\\TicketsApp\\TicketsApp\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\feikf\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Dok\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -92,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }
