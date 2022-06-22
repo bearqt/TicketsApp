@@ -7,7 +7,7 @@ namespace TicketsApp.Data.Services
 {
     public interface ITicketsService
     {
-        Task AddTicket(SegmentInputModel inputModel);
-        Task RefundTicket(RefundInputModel inputModel);
+        Task AddTicketAsync(SegmentInputModel inputModel);
+        Task RefundTicketAsync(RefundInputModel inputModel);
     }
 }

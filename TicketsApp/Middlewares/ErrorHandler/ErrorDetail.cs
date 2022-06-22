@@ -2,7 +2,7 @@
 using System.Text.Json;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
-namespace TicketsApp.Middlewares
+namespace TicketsApp.Middlewares.ErrorHandler
 {
     public class ErrorDetail
     {

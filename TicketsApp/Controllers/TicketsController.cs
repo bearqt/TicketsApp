@@ -29,7 +29,7 @@ namespace TicketsApp.Controllers
         [ValidateJson("sale")]
         public async Task<ActionResult> SaleAsync(SegmentInputModel inputModel)
         {
-            await _service.AddTicket(inputModel);
+            await _service.AddTicketAsync(inputModel);
             return Ok();
         }
 
@@ -37,7 +37,7 @@ namespace TicketsApp.Controllers
         [ValidateJson("refund")]
         public async Task<ActionResult> RefundAsync(RefundInputModel inputModel)
         {
-            await _service.RefundTicket(inputModel);
+            await _service.RefundTicketAsync(inputModel);
             return Ok();
         }
     }

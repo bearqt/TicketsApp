@@ -24,7 +24,7 @@ namespace TicketsApp.Data.Services
             _validator = validator;
         }
         
-        public async Task AddTicket(SegmentInputModel inputModel)
+        public async Task AddTicketAsync(SegmentInputModel inputModel)
         {
             const int maxTimeout = 12_000; // ms
             
@@ -46,10 +46,9 @@ namespace TicketsApp.Data.Services
             await _context.SaveChangesAsync(source.Token);
         }
 
-        public async Task RefundTicket(RefundInputModel inputModel)
+        public async Task RefundTicketAsync(RefundInputModel inputModel)
         {
             var segments =  _context.Segments.Where(s => s.TicketNumber == inputModel.TicketNumber && s.OperationType != "refund");
-
             foreach (var s in segments)
             {
                 s.OperationType = inputModel.OperationType;

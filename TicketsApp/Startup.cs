@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 using TicketsApp.Data;
 using TicketsApp.Data.Services;
 using TicketsApp.JsonExtensions;
-using TicketsApp.Middlewares;
+using TicketsApp.Middlewares.ErrorHandler;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
 
@@ -18,11 +18,11 @@ namespace TicketsApp
 {
     public class Startup
     {
-        private readonly IConfiguration Configuration;
+        private readonly IConfiguration _configuration;
 
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -35,7 +35,7 @@ namespace TicketsApp
             services.AddSingleton<ITicketValidator, TicketValidator>();
             services.AddDbContext<TicketsDbContext>(options =>
             {
-                options.UseNpgsql(Configuration.GetConnectionString("TicketsDatabase"));
+                options.UseNpgsql(_configuration.GetConnectionString("TicketsDatabase"));
             });
 
             services.AddScoped<ITicketsService, TicketsService>();

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 
-namespace TicketsApp.Middlewares
+namespace TicketsApp.Middlewares.ErrorHandler
 {
     public class ErrorHandlerMiddleware
     {
@@ -73,7 +73,6 @@ namespace TicketsApp.Middlewares
             }
         }
     }
-
     public static class ErrorMiddlewareExtension
     {
         public static IApplicationBuilder UseErrorHandler(this IApplicationBuilder builder)
