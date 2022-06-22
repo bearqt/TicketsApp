@@ -1,8 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using NJsonSchema;
@@ -20,33 +22,26 @@ namespace TicketsApp.Filters
         {
             _operation = operation;
         }
-        public void OnActionExecuting(ActionExecutingContext context)
+        public async void OnActionExecuting(ActionExecutingContext context)
         {
-            var jsonInput = ReadJsonInput(context);
-
+            var jsonInput = await ReadJsonInput(context);
             var configuration = context.HttpContext.RequestServices.GetService<IConfiguration>(); 
 
             var jsonValidator = new JsonSchemaValidator();
             var schemaPath = _operation == "sale" ? configuration["JsonSchemaPaths:Sale"] :
                                     _operation == "refund" ? configuration["JsonSchemaPaths:Refund"] : default;
-            if (!jsonValidator.Validate(schemaPath, jsonInput))
+            var isJsonValid = await jsonValidator.Validate(schemaPath, jsonInput);
+            if (!isJsonValid)
             {
                 context.HttpContext.Response.StatusCode = 400;
             }
         }
 
-        private static string ReadJsonInput(ActionExecutingContext context)
+        private static async Task<string> ReadJsonInput(ActionContext context)
         {
-            var jsonInput = "";
-            var req = context.HttpContext.Request;
-            req.Body.Position = 0;
-            req.EnableBuffering();
-            using (StreamReader reader = new StreamReader(req.Body, Encoding.UTF8, true, 2048, true))
-            {
-                jsonInput = reader.ReadToEnd();
-            }
-            req.Body.Position = 0;
-            return jsonInput;
+            context.HttpContext.Request.Body.Position = 0;
+            var jsonBody = await new StreamReader(context.HttpContext.Request.Body).ReadToEndAsync();
+            return jsonBody;
         }
 
         public void OnActionExecuted(ActionExecutedContext context)

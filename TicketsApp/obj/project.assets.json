@@ -1165,19 +1165,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Dok\\.nuget\\packages\\": {}
+    "C:\\Users\\feikf\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dok\\RiderProjects\\TicketsApp\\TicketsApp\\TicketsApp.csproj",
+      "projectUniqueName": "C:\\Users\\feikf\\RiderProjects\\TicketsApp\\TicketsApp\\TicketsApp.csproj",
       "projectName": "TicketsApp",
-      "projectPath": "C:\\Users\\Dok\\RiderProjects\\TicketsApp\\TicketsApp\\TicketsApp.csproj",
-      "packagesPath": "C:\\Users\\Dok\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dok\\RiderProjects\\TicketsApp\\TicketsApp\\obj\\",
+      "projectPath": "C:\\Users\\feikf\\RiderProjects\\TicketsApp\\TicketsApp\\TicketsApp.csproj",
+      "packagesPath": "C:\\Users\\feikf\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\feikf\\RiderProjects\\TicketsApp\\TicketsApp\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Dok\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\feikf\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

@@ -15,6 +15,7 @@ namespace TicketsApp.Controllers
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
+    [RequestSizeLimit(2024)]
     public class TicketsController : ControllerBase
     {
         private readonly ITicketsService _service;
@@ -26,8 +27,7 @@ namespace TicketsApp.Controllers
 
         [HttpPost("sale")]
         [ValidateJson("sale")]
-        [RequestSizeLimit(2024)]
-        public async Task<ActionResult> Sale(SegmentInputModel inputModel)
+        public async Task<ActionResult> SaleAsync(SegmentInputModel inputModel)
         {
             await _service.AddTicket(inputModel);
             return Ok();
@@ -35,8 +35,7 @@ namespace TicketsApp.Controllers
 
         [HttpPost("refund")]
         [ValidateJson("refund")]
-        [RequestSizeLimit(2024)]
-        public async Task<ActionResult> Refund(RefundInputModel inputModel)
+        public async Task<ActionResult> RefundAsync(RefundInputModel inputModel)
         {
             await _service.RefundTicket(inputModel);
             return Ok();

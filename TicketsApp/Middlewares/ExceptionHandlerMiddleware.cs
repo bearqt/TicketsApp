@@ -23,60 +23,53 @@ namespace TicketsApp.Middlewares
             {
                 await _next(context);
             }
-            catch (BadHttpRequestException ex)
+            catch (BadHttpRequestException ex) when (ex.Message == "Request body too large.")
             {
-                if (ex.Message == "Request body too large.")
+                context.Response.StatusCode = 413;
+                await context.Response.WriteAsync(new ErrorDetail()
                 {
-                    context.Response.StatusCode = 413;
-                    await context.Response.WriteAsync(new ErrorDetail()
-                    {
-                        StatusCode = 413,
-                        Message = "JSON size is bigger than 2kb"
-                    }.ToString());
-                }
-                else if (ex.Message == "Invalid input value(s)")
-                {
-                    context.Response.StatusCode = 400;
-                    await context.Response.WriteAsync(new ErrorDetail()
-                    {
-                        StatusCode = 400,
-                        Message = "Invalid input value(s)."
-                    }.ToString());
-                }
+                    StatusCode = 413,
+                    Message = "JSON size is bigger than 2kb"
+                }.ToString());
             }
-            catch (DbUpdateException ex)
+            catch (BadHttpRequestException ex) when (ex.Message == "Invalid input value(s)")
             {
-                if (ex.InnerException is PostgresException npgex &&
-                    npgex.SqlState == PostgresErrorCodes.UniqueViolation)
+                context.Response.StatusCode = 400;
+                await context.Response.WriteAsync(new ErrorDetail()
                 {
-                    context.Response.StatusCode = 409;
-                    await context.Response.WriteAsync(new ErrorDetail()
-                    {
-                        StatusCode = 409,
-                        Message = "Ticket is already sold"
-                    }.ToString());
-                }
-                else
-                {
-                    context.Response.StatusCode = 409;
-                    await context.Response.WriteAsync(new ErrorDetail()
-                    {
-                        StatusCode = 409,
-                        Message = "Ticket has already been refund or doesnt exist"
-                    }.ToString());
-                }
+                    StatusCode = 400,
+                    Message = ex.Message
+                }.ToString());
             }
-            catch (TaskCanceledException ex)
+
+            catch (DbUpdateException ex) when (ex.InnerException is PostgresException {SqlState: PostgresErrorCodes.UniqueViolation})
             {
-                if (ex.Message == "A task was canceled.")
+                context.Response.StatusCode = 409;
+                await context.Response.WriteAsync(new ErrorDetail()
                 {
-                    context.Response.StatusCode = 408;
-                    await context.Response.WriteAsync(new ErrorDetail()
-                    {
-                        StatusCode = 408,
-                        Message = "Request time has exceeded timeout (120s)"
-                    }.ToString());
-                }
+                    StatusCode = 409,
+                    Message = ex.Message
+                }.ToString());
+            }
+
+            catch (DbUpdateException ex) when (ex.Message == "Ticket has already been refund or doesnt exist")
+            {
+                context.Response.StatusCode = 409;
+                await context.Response.WriteAsync(new ErrorDetail()
+                {
+                    StatusCode = 409,
+                    Message = ex.Message
+                }.ToString());
+            }
+            
+            catch (TaskCanceledException ex) when (ex.Message == "A task was canceled.")
+            {
+                context.Response.StatusCode = 408;
+                await context.Response.WriteAsync(new ErrorDetail()
+                {
+                    StatusCode = 408,
+                    Message = "Request time has exceeded timeout (120s)"
+                }.ToString());
             }
         }
     }

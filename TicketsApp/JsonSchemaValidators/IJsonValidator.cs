@@ -1,7 +1,9 @@
-﻿namespace TicketsApp.JsonSchemaValidators
+﻿using System.Threading.Tasks;
+
+namespace TicketsApp.JsonSchemaValidators
 {
     public interface IJsonValidator
     {
-        bool Validate(string schemaPath, string json);
+        Task<bool> Validate(string schemaPath, string json);
     }
 }

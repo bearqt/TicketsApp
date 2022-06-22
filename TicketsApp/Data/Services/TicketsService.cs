@@ -48,7 +48,7 @@ namespace TicketsApp.Data.Services
 
         public async Task RefundTicket(RefundInputModel inputModel)
         {
-            var segments = await _context.Segments.Where(s => s.TicketNumber == inputModel.TicketNumber && s.OperationType != "refund").ToListAsync();
+            var segments =  _context.Segments.Where(s => s.TicketNumber == inputModel.TicketNumber && s.OperationType != "refund");
 
             foreach (var s in segments)
             {
@@ -58,7 +58,7 @@ namespace TicketsApp.Data.Services
             }
             
             var rowsChanged = await _context.SaveChangesAsync();
-            if (rowsChanged == 0) throw new DbUpdateException();
+            if (rowsChanged == 0) throw new DbUpdateException("Ticket has already been refund or doesnt exist");
         }
     }
 }

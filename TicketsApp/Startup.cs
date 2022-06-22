@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -46,11 +47,15 @@ namespace TicketsApp
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseErrorHandler();
             }
             
+            app.Use(next => context => {
+                context.Request.EnableBuffering();
+                return next(context);
+            });
+           
             app.UseRouting();
-            app.UseValidateJsonSizeMiddleware();
+            app.UseErrorHandler();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
