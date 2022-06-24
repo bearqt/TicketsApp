@@ -2,7 +2,6 @@
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -14,7 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace TicketsApp.Filters
 {
     // Filter for validation on JSON schema
-    public class ValidateJsonAttribute : Attribute, IActionFilter
+    public class ValidateJsonAttribute : Attribute, IResourceFilter
     {
         private readonly string _operation;
         
@@ -22,18 +21,17 @@ namespace TicketsApp.Filters
         {
             _operation = operation;
         }
-        public async void OnActionExecuting(ActionExecutingContext context)
+        public async void OnResourceExecuting(ResourceExecutingContext context)
         {
             var jsonInput = await ReadJsonInput(context);
-            var configuration = context.HttpContext.RequestServices.GetService<IConfiguration>(); 
-
+            var configuration = context.HttpContext.RequestServices.GetService<IConfiguration>();
             var jsonValidator = new JsonSchemaValidator();
             var schemaPath = _operation == "sale" ? configuration["JsonSchemaPaths:Sale"] :
                                     _operation == "refund" ? configuration["JsonSchemaPaths:Refund"] : default;
             var isJsonValid = await jsonValidator.Validate(schemaPath, jsonInput);
             if (!isJsonValid)
             {
-                context.HttpContext.Response.StatusCode = 400;
+                context.Result = new BadRequestResult();
             }
         }
 
@@ -41,10 +39,11 @@ namespace TicketsApp.Filters
         {
             context.HttpContext.Request.Body.Position = 0;
             var jsonBody = await new StreamReader(context.HttpContext.Request.Body).ReadToEndAsync();
+            Console.WriteLine(jsonBody);
             return jsonBody;
         }
 
-        public void OnActionExecuted(ActionExecutedContext context)
+        public void OnResourceExecuted(ResourceExecutedContext context)
         {
             
         }

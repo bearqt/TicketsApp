@@ -2,7 +2,7 @@
 
 using TicketsApp.InputModels;
 
-namespace TicketsApp.Data.Services
+namespace TicketsApp.Data.Services.TicketValidators
 {
     public class TicketValidator : ITicketValidator
     {
@@ -10,7 +10,7 @@ namespace TicketsApp.Data.Services
         private const int DocNumberSize = 10;
         public bool Validate(SegmentInputModel inputModel)
         {
-            return ValidateTicketNumber(inputModel) && ValidateGender(inputModel) && ValidateDocNumber(inputModel) && ValidateBirthday(inputModel);
+            return ValidateTicketNumber(inputModel) && ValidateGender(inputModel) && ValidateDocNumber(inputModel);
         }
 
         private static bool ValidateTicketNumber(SegmentInputModel inputModel)
@@ -29,12 +29,7 @@ namespace TicketsApp.Data.Services
             {
                 return inputModel.Passenger.DocNumber.ToString().Length == DocNumberSize;
             }
-            return true;
-        }
-
-        private static bool ValidateBirthday(SegmentInputModel inputModel)
-        {
-            return inputModel.Passenger.Birthdate < DateTime.Now;
+            return inputModel.Passenger.DocNumber.ToString().Length >= 6;
         }
     }
 }

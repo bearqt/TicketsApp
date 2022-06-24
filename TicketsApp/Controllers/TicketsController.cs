@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TicketsApp.Data;
 using TicketsApp.Data.Models;
-using TicketsApp.Data.Services;
+using TicketsApp.Data.Services.TicketsServices;
 using TicketsApp.Filters;
 using TicketsApp.InputModels;
 
@@ -15,7 +15,7 @@ namespace TicketsApp.Controllers
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
-    [RequestSizeLimit(2024)]
+    [RequestSizeLimit(2048)]
     public class TicketsController : ControllerBase
     {
         private readonly ITicketsService _service;
@@ -27,6 +27,7 @@ namespace TicketsApp.Controllers
 
         [HttpPost("sale")]
         [ValidateJson("sale")]
+        // [JsonSchemaResourceFilter("sale")]
         public async Task<ActionResult> SaleAsync(SegmentInputModel inputModel)
         {
             await _service.AddTicketAsync(inputModel);
