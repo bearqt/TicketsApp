@@ -7,9 +7,10 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using TicketsApp.Data.Models;
+using TicketsApp.Data.Services.TicketValidators;
 using TicketsApp.InputModels;
 
-namespace TicketsApp.Data.Services
+namespace TicketsApp.Data.Services.TicketsServices
 {
     public class TicketsService : ITicketsService
     {
@@ -48,7 +49,8 @@ namespace TicketsApp.Data.Services
 
         public async Task RefundTicketAsync(RefundInputModel inputModel)
         {
-            var segments =  _context.Segments.Where(s => s.TicketNumber == inputModel.TicketNumber && s.OperationType != "refund");
+            var segments =  _context.Segments
+                .Where(s => s.TicketNumber == inputModel.TicketNumber && s.OperationType != "refund");
             foreach (var s in segments)
             {
                 s.OperationType = inputModel.OperationType;

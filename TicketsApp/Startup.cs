@@ -8,7 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TicketsApp.Data;
-using TicketsApp.Data.Services;
+using TicketsApp.Data.Services.TicketsServices;
+using TicketsApp.Data.Services.TicketValidators;
 using TicketsApp.JsonExtensions;
 using TicketsApp.Middlewares.ErrorHandler;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
@@ -53,9 +54,8 @@ namespace TicketsApp
                 context.Request.EnableBuffering();
                 return next(context);
             });
-           
-            app.UseRouting();
             app.UseErrorHandler();
+            app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

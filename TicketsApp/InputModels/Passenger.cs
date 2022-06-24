@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using TicketsApp.Filters;
 
 namespace TicketsApp.InputModels
 {
@@ -16,6 +17,7 @@ namespace TicketsApp.InputModels
         [Required]
         public long DocNumber { get; set; }
         [Required]
+        [EnsureAgeCorrect]
         public DateTime Birthdate { get; set; }
         [Required]
         public string Gender { get; set; }

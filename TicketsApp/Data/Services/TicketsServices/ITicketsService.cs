@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using TicketsApp.Data.Models;
 using TicketsApp.InputModels;
 
-namespace TicketsApp.Data.Services
+namespace TicketsApp.Data.Services.TicketsServices
 {
     public interface ITicketsService
     {

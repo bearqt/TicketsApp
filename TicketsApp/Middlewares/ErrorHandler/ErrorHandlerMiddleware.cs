@@ -41,7 +41,6 @@ namespace TicketsApp.Middlewares.ErrorHandler
                     Message = ex.Message
                 }.ToString());
             }
-
             catch (DbUpdateException ex) when (ex.InnerException is PostgresException {SqlState: PostgresErrorCodes.UniqueViolation})
             {
                 context.Response.StatusCode = 409;

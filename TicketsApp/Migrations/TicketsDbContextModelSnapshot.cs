@@ -27,14 +27,12 @@ namespace TicketsApp.Migrations
                         .UseIdentityByDefaultColumn();
 
                     b.Property<string>("AirlineCode")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTimeOffset>("ArriveDateTime")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("ArrivePlace")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("Birthdate")
@@ -44,7 +42,6 @@ namespace TicketsApp.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("DepartPlace")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<long>("DocNumber")
@@ -57,41 +54,33 @@ namespace TicketsApp.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Gender")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("OperationPlace")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTimeOffset>("OperationTime")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("OperationType")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("PassengerType")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Patronymic")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("PnrId")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("SerialNumber")
                         .HasColumnType("integer");
 
                     b.Property<string>("Surname")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<long>("TicketNumber")
