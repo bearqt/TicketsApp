@@ -65,6 +65,9 @@ namespace TicketsApp.Migrations
                     b.Property<DateTimeOffset>("OperationTime")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("OperationTimeTimezone")
+                        .HasColumnType("integer");
+
                     b.Property<string>("OperationType")
                         .HasColumnType("text");
 
