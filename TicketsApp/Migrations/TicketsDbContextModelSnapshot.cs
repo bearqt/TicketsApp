@@ -32,6 +32,9 @@ namespace TicketsApp.Migrations
                     b.Property<DateTimeOffset>("ArriveDateTime")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("ArriveDateTimeTimezone")
+                        .HasColumnType("integer");
+
                     b.Property<string>("ArrivePlace")
                         .HasColumnType("text");
 
@@ -40,6 +43,9 @@ namespace TicketsApp.Migrations
 
                     b.Property<DateTimeOffset>("DepartDateTime")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("DepartDateTimeTimezone")
+                        .HasColumnType("integer");
 
                     b.Property<string>("DepartPlace")
                         .HasColumnType("text");

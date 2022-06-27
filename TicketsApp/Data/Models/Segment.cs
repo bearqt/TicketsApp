@@ -42,10 +42,12 @@ namespace TicketsApp.Data.Models
         public string DepartPlace { get; set; }
        
         public DateTimeOffset DepartDateTime { get; set; }
+        public int DepartDateTimeTimezone { get; set; }
         
         public string ArrivePlace { get; set; }
         
         public DateTimeOffset ArriveDateTime { get; set; }
+        public int ArriveDateTimeTimezone { get; set; }
         public string PnrId { get; set; }
     }
 }
