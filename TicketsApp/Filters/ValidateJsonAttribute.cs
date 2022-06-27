@@ -26,8 +26,7 @@ namespace TicketsApp.Filters
             var jsonInput = await ReadJsonInput(context);
             var configuration = context.HttpContext.RequestServices.GetService<IConfiguration>();
             var jsonValidator = new JsonSchemaValidator();
-            var schemaPath = _operation == "sale" ? configuration["JsonSchemaPaths:Sale"] :
-                                    _operation == "refund" ? configuration["JsonSchemaPaths:Refund"] : default;
+            var schemaPath = configuration[$"JsonSchemaPaths:{_operation}"];
             var isJsonValid = await jsonValidator.Validate(schemaPath, jsonInput);
             if (!isJsonValid)
             {
@@ -39,7 +38,7 @@ namespace TicketsApp.Filters
         {
             context.HttpContext.Request.Body.Position = 0;
             var jsonBody = await new StreamReader(context.HttpContext.Request.Body).ReadToEndAsync();
-            Console.WriteLine(jsonBody);
+            context.HttpContext.Request.Body.Position = 0;
             return jsonBody;
         }
 

@@ -27,7 +27,6 @@ namespace TicketsApp.Controllers
 
         [HttpPost("sale")]
         [ValidateJson("sale")]
-        // [JsonSchemaResourceFilter("sale")]
         public async Task<ActionResult> SaleAsync(SegmentInputModel inputModel)
         {
             await _service.AddTicketAsync(inputModel);

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Routing.Template;
 using TicketsApp.Data.Models;
 using TicketsApp.InputModels;
 
-namespace TicketsApp.Data.Services.AutoMapperProfiles
+namespace TicketsApp.Data.AutoMapperProfiles
 {
     public class TicketsProfile : Profile
     {
@@ -21,6 +21,9 @@ namespace TicketsApp.Data.Services.AutoMapperProfiles
                 .ForMember(p => p.DocType, s => s.MapFrom(s => s.Passenger.DocType))
                 .ForMember(p => p.PassengerType, s => s.MapFrom(s => s.Passenger.PassengerType))
                 .ForMember(p => p.TicketNumber, s => s.MapFrom(s => s.Passenger.TicketNumber))
+                
+                .ForMember(p => p.OperationTimeTimezone, s => s.MapFrom(s => s.OperationTime.Offset.Hours))
+
                 .ForMember(p => p.TicketType, s => s.MapFrom(s => s.Passenger.TicketType));
             CreateMap<Route, Segment>()
                 .ForMember(p => p.AirlineCode, s => s.MapFrom(s => s.AirlineCode))
@@ -28,6 +31,10 @@ namespace TicketsApp.Data.Services.AutoMapperProfiles
                 .ForMember(p => p.DepartPlace, s => s.MapFrom(s => s.DepartPlace))
                 .ForMember(p => p.DepartDateTime, s => s.MapFrom(s => s.DepartDatetime))
                 .ForMember(p => p.ArrivePlace, s => s.MapFrom(s => s.ArrivePlace))
+                
+                .ForMember(p => p.DepartDateTimeTimezone, s => s.MapFrom(s => s.DepartDatetime.Offset.Hours))
+                .ForMember(p => p.ArriveDateTimeTimezone, s => s.MapFrom(s => s.ArriveDatetime.Offset.Hours))
+                
                 .ForMember(p => p.ArriveDateTime, s => s.MapFrom(s => s.ArriveDatetime))
                 .ForMember(p => p.PnrId, s => s.MapFrom(s => s.PnrId));
         }

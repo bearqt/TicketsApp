@@ -47,7 +47,7 @@ namespace TicketsApp.Middlewares.ErrorHandler
                 await context.Response.WriteAsync(new ErrorDetail()
                 {
                     StatusCode = 409,
-                    Message = ex.Message
+                    Message = "Ticket has already been sold"
                 }.ToString());
             }
 

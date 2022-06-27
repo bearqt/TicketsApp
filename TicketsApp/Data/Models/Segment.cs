@@ -12,6 +12,7 @@ namespace TicketsApp.Data.Models
         public int SerialNumber { get; set; }
         public string OperationType { get; set; }
         public DateTimeOffset OperationTime { get; set; }
+        public int OperationTimeTimezone { get; set; }
         public string OperationPlace { get; set; }
         
         public string Name { get; set; }
@@ -41,10 +42,12 @@ namespace TicketsApp.Data.Models
         public string DepartPlace { get; set; }
        
         public DateTimeOffset DepartDateTime { get; set; }
+        public int DepartDateTimeTimezone { get; set; }
         
         public string ArrivePlace { get; set; }
         
         public DateTimeOffset ArriveDateTime { get; set; }
+        public int ArriveDateTimeTimezone { get; set; }
         public string PnrId { get; set; }
     }
 }
