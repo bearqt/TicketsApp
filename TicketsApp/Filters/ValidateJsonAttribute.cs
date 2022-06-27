@@ -40,7 +40,6 @@ namespace TicketsApp.Filters
             context.HttpContext.Request.Body.Position = 0;
             var jsonBody = await new StreamReader(context.HttpContext.Request.Body).ReadToEndAsync();
             context.HttpContext.Request.Body.Position = 0;
-            Console.WriteLine(jsonBody);
             return jsonBody;
         }
 

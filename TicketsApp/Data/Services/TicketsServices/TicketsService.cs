@@ -49,17 +49,13 @@ namespace TicketsApp.Data.Services.TicketsServices
 
         public async Task RefundTicketAsync(RefundInputModel inputModel)
         {
-            var segments =  _context.Segments
-                .Where(s => s.TicketNumber == inputModel.TicketNumber && s.OperationType != "refund");
-            foreach (var s in segments)
-            {
-                s.OperationType = inputModel.OperationType;
-                s.OperationTime = inputModel.OperationTime;
-                s.OperationPlace = inputModel.OperationPlace;
-            }
-            
-            var rowsChanged = await _context.SaveChangesAsync();
+            var rowsChanged = await _context.Database.ExecuteSqlRawAsync(
+                $"UPDATE \"Segments\" SET \"OperationType\" = '{inputModel.OperationType}'," +
+                $"\"OperationPlace\" = '{inputModel.OperationPlace}'," +
+                $"\"OperationTime\" = '{inputModel.OperationTime}'" +
+                $"WHERE \"TicketNumber\" = '{inputModel.TicketNumber}' AND \"OperationType\" != 'refund';");
             if (rowsChanged == 0) throw new DbUpdateException("Ticket has already been refund or doesnt exist");
+            
         }
     }
 }
