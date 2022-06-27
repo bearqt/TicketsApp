@@ -55,7 +55,6 @@ namespace TicketsApp.Data.Services.TicketsServices
                 $"\"OperationTime\" = '{inputModel.OperationTime}'" +
                 $"WHERE \"TicketNumber\" = '{inputModel.TicketNumber}' AND \"OperationType\" != 'refund';");
             if (rowsChanged == 0) throw new DbUpdateException("Ticket has already been refund or doesnt exist");
-            
         }
     }
 }
