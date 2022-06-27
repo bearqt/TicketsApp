@@ -38,7 +38,7 @@ namespace TicketsApp
             {
                 options.UseNpgsql(_configuration.GetConnectionString("TicketsDatabase"));
             });
-
+            services.AddSwaggerGen();
             services.AddScoped<ITicketsService, TicketsService>();
         }
 
@@ -48,6 +48,8 @@ namespace TicketsApp
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
             
             app.Use(next => context => {

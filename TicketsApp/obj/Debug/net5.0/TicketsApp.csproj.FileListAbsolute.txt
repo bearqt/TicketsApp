@@ -39,3 +39,7 @@ C:\Users\feikf\RiderProjects\TicketsApp\TicketsApp\obj\Debug\net5.0\refint\Ticke
 C:\Users\feikf\RiderProjects\TicketsApp\TicketsApp\obj\Debug\net5.0\TicketsApp.pdb
 C:\Users\feikf\RiderProjects\TicketsApp\TicketsApp\obj\Debug\net5.0\TicketsApp.genruntimeconfig.cache
 C:\Users\feikf\RiderProjects\TicketsApp\TicketsApp\obj\Debug\net5.0\ref\TicketsApp.dll
+C:\Users\feikf\RiderProjects\TicketsApp\TicketsApp\bin\Debug\net5.0\Microsoft.OpenApi.dll
+C:\Users\feikf\RiderProjects\TicketsApp\TicketsApp\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\feikf\RiderProjects\TicketsApp\TicketsApp\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\feikf\RiderProjects\TicketsApp\TicketsApp\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
